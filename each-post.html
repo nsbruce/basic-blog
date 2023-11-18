@@ -1,6 +1,18 @@
 <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+<script
+    type="module"
+    src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"
+  ></script>
+<script type="module">
+      import '@polymer/marked-element/marked-element.js';
+    </script>
 <html>
 	<body>
+		<h1>md-block</h1>
 		<md-block src="a-post.md"> Couldn't find the file </md-block>
+		<h1>zero-md</h1>
+		<zero-md src="a-post.md"></zero-md>
+		<h1>marked-element</h1>
+		<marked-element src="a-post.md"></marked-element>
 	</body>
 </html>
