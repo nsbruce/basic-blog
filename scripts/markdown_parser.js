@@ -11,15 +11,15 @@ class MarkdownParsedComponent extends HTMLElement {
         .then(text => {
           const [yamlHeader, markdownContent] = this.splitYAMLAndMarkdown(text);
           const yamlData = this.parseYAML(yamlHeader);
-          const htmlContent = this.convertMarkdownToHTML(markdownContent);
+        //   const htmlContent = this.convertMarkdownToHTML(markdownContent);
   
           const combinedContent = `
             <div>
               <pre>${JSON.stringify(yamlData, null, 2)}</pre>
-              <div>${htmlContent}</div>
-            </div>
-          `;
-  
+              </div>
+              `;
+              
+            //   <div>${htmlContent}</div>
           this.innerHTML = combinedContent;
         })
         .catch(error => {
