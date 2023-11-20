@@ -16,6 +16,7 @@ class MarkdownParsedComponent extends HTMLElement {
           const combinedContent = `
             <div>
               <pre>${JSON.stringify(yamlData, null, 2)}</pre>
+                <h1>${yamlData.title}</h1>
                 <div>${htmlContent}</div>
               </div>
               `;
