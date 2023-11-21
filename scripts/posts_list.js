@@ -6,7 +6,7 @@ class PostsListComponent extends HTMLElement {
         return;
       }
   
-      fetch(src)
+      fetch(srcDir)
         .then(response => response.text())
         .then(data => {
           const fileURLs = data.split('\n').filter(url => url.trim().endsWith('.md'));
