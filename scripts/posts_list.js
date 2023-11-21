@@ -1,17 +1,20 @@
 class PostsListComponent extends HTMLElement {
     connectedCallback() {
-      const srcDir = this.getAttribute('srcDir');
-      if (!srcDir) {
-        console.error('Please provide a source directory (srcDir) attribute for the Markdown files.');
+      const manifest = this.getAttribute('manifest');
+      if (!manifest) {
+        console.error('Please provide a manifest file attribute (manifest) for the Markdown files.');
         return;
       }
+
+      const manifestDir = manifest.split('/')[0]
+      console.log(manifestDir)
   
-      fetch(srcDir)
+      fetch(manifest)
         .then(response => response.text())
         .then(data => {
           const fileURLs = data.split('\n').filter(url => url.trim().endsWith('.md'));
           fileUrls.forEach(url => {
-            fetch(url)
+            fetch(`{$manifestDir}/{$url}`)
               .then(response => response.text())
               .then(text => {
                 const [yamlHeader, markdownContent] = this.splitYAMLAndMarkdown(text);
