@@ -7,12 +7,15 @@ class PostsListComponent extends HTMLElement {
       }
 
       const manifestDir = manifest.split('/')[0]
-      console.log(manifestDir)
-  
+      console.log('the manifest dir', manifestDir)
+      console.log('the manifest', manifest)
+
       fetch(manifest)
         .then(response => response.text())
         .then(data => {
+          console.log('data from manifest response', data)
           const fileURLs = data.split('\n').filter(url => url.trim().endsWith('.md'));
+          console.log('list of file urls', fileURLs)
           fileUrls.forEach(url => {
             fetch(`{$manifestDir}/{$url}`)
               .then(response => response.text())
