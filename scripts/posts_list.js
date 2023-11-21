@@ -7,14 +7,12 @@ class PostsListComponent extends HTMLElement {
       }
 
       const manifestDir = manifest.split('/')[0]
-      console.log('the manifest dir', manifestDir)
-      console.log('the manifest', manifest)
 
       fetch(manifest)
         .then(response => response.json())
         .then(data => {
           data.forEach(url => {
-            fetch(`{$manifestDir}/{$url}`)
+            fetch(`${manifestDir}/${url}`)
               .then(response => response.text())
               .then(text => {
                 const [yamlHeader, markdownContent] = this.splitYAMLAndMarkdown(text);
