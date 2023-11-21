@@ -11,12 +11,9 @@ class PostsListComponent extends HTMLElement {
       console.log('the manifest', manifest)
 
       fetch(manifest)
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
-          console.log('data from manifest response', data)
-          const fileURLs = data.split('\n').filter(url => url.trim().endsWith('.md'));
-          console.log('list of file urls', fileURLs)
-          fileUrls.forEach(url => {
+          data.forEach(url => {
             fetch(`{$manifestDir}/{$url}`)
               .then(response => response.text())
               .then(text => {
@@ -38,7 +35,7 @@ class PostsListComponent extends HTMLElement {
           })
         })
         .catch(error => {
-          console.error('Error fetching or processing the directory:', error);
+          console.error('Error fetching or processing the manifest:', error);
         });
     }
   
