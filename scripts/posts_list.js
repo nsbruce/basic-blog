@@ -17,15 +17,32 @@ class PostsListComponent extends HTMLElement {
               .then(text => {
                 const [yamlHeader, markdownContent] = this.splitYAMLAndMarkdown(text);
                 const yamlData = this.parseYAML(yamlHeader);
-                const htmlContent = this.convertMarkdownToHTML(markdownContent);
-
+                // const htmlContent = this.convertMarkdownToHTML(markdownContent);
+                
                 this.innerHTML += `
-                  <div>
-                  <pre>${JSON.stringify(yamlData, null, 2)}</pre>
-                  <h1>${yamlData.title}</h1>
-                  <div>${htmlContent}</div>
-                  </div>
-                  `;
+                  <ks-card
+                    img-src="https://ik.imagekit.io/nicholasbruce/${yamlData.gallery}/${yamlData.introimage}"
+                    alt="for now"
+                    img-direction="left"
+                    >
+                    <ks-card-body
+                      card-title="${yamlData.title}"
+                      card-subtitle="todays date"
+                      >
+                      "Maybe an excerpt"
+                    </ks-card-body>
+                    <ks-card-footer>
+                      "any footer content?"
+                    </ks-card-footer>
+                  </ks-card>
+                `;
+                // this.innerHTML += `
+                //   <div>
+                //   <pre>${JSON.stringify(yamlData, null, 2)}</pre>
+                //   <h1>${yamlData.title}</h1>
+                //   <div>${htmlContent}</div>
+                //   </div>
+                //   `;
               })
               .catch(error => {
                 console.error('Error fetching or processing the file:', error);
